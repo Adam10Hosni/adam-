@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Special Person 🖤</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
+<style>
+body{
+    margin:0;
+    font-family:'Cairo', sans-serif;
+    background:linear-gradient(180deg,#000,#0a0a0a);
+    color:#bbb;
+    text-align:center;
+    padding:50px 20px;
+}
+h1{
+    font-size:36px;
+    margin-bottom:20px;
+}
+h2{
+    font-size:28px;
+    margin:15px 0;
+}
+p{
+    font-size:18px;
+    line-height:1.6;
+    margin:10px 0;
+}
+.message-box{
+    background:#111;
+    border-left:4px solid #800080;
+    padding:20px;
+    margin:20px auto;
+    border-radius:10px;
+    max-width:800px;
+}
+button{
+    margin-top:20px;
+    padding:10px 20px;
+    border:none;
+    border-radius:8px;
+    background:#000;
+    color:#fff;
+    cursor:pointer;
+}
+button:hover{
+    background:#222;
+}
+input{
+    padding:10px;
+    border-radius:6px;
+    border:none;
+    text-align:center;
+}
+#content{
+    display:none;
+}
+#nameNadi{
+    font-weight:bold;
+    color:#fff;
+    font-size:24px;
+    margin-bottom:15px;
+}
+</style>
+</head>
+<body>
+
+<h1>Special Person 🖤</h1>
+
+<!-- Password Box -->
+<div id="passwordBox">
+    <p>Enter Password to View This Page</p>
+    <input type="password" id="passInput" placeholder="Password">
+    <br><br>
+    <button onclick="checkPass()">Enter</button>
+</div>
+
+<!-- Hidden Content -->
+<div id="content">
+
+    <div id="nameNadi">ندوشي</div>
+
+    <div class="message-box">
+        <h2>Poem</h2>
+        <p>
+            To the one I hold so dear,<br>
+            You light up the darkest nights,<br>
+            Your presence turns my silence into calm.
+        </p>
+    </div>
+
+    <div class="message-box">
+        <h2>Message of Gratitude</h2>
+        <p>
+            Thank you for being in my life when I needed light,<br>
+            Your presence changed everything for me,<br>
+            And my gratitude for you is beyond words.
+        </p>
+    </div>
+
+    <div class="message-box">
+        <h2>Expression of Love</h2>
+        <p>
+            How much I love you? Words can't measure,<br>
+            After talking to you, I feel different,<br>
+            Lost sometimes… but my heart is full because of you.
+        </p>
+    </div>
+
+    <button onclick="window.history.back()">Back</button>
+
+</div>
+
+<script>
+function checkPass(){
+    var password = document.getElementById("passInput").value;
+    if(password === "13/11/2025"){
+        document.getElementById("passwordBox").style.display = "none";
+        document.getElementById("content").style.display = "block";
+    } else {
+        alert("Wrong Password");
+        document.getElementById("passInput").value = "";
+    }
+}
+</script>
+
+</body>
+</html>
+
+
+

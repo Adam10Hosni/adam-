@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login - Adam</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
+<style>
+body{
+    margin:0;
+    font-family:'Cairo', sans-serif;
+    background: radial-gradient(circle at top, #1a1a1a, #000);
+    color:#ccc;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+.box{
+    background:rgba(20,20,20,0.9);
+    padding:35px;
+    border-radius:15px;
+    width:320px;
+    box-shadow:0 0 25px rgba(150,0,255,0.15);
+}
+h2{
+    text-align:center;
+    font-weight:300;
+    letter-spacing:2px;
+}
+input{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    border:none;
+    border-radius:8px;
+    background:#111;
+    color:#eee;
+}
+button{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+    background:#2a003f;
+    color:#ddd;
+    cursor:pointer;
+    transition:.3s;
+}
+button:hover{
+    background:#3d0060;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Welcome Back</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="register()">Create Account</button>
+    <button onclick="login()">Login</button>
+</div>
+
+<script>
+function register(){
+    localStorage.setItem(username.value,password.value);
+    alert("Account created");
+}
+function login(){
+    if(localStorage.getItem(username.value)===password.value){
+        localStorage.setItem("currentUser",username.value);
+        window.location.href="home.html";
+    } else alert("Wrong login");
+}
+</script>
+
+</body>
+</html>

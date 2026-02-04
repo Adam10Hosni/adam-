@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Adam's World</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
+<style>
+body{
+    margin:0;
+    font-family:'Cairo', sans-serif;
+    background:linear-gradient(180deg,#000,#0a0a0a);
+    color:#bbb;
+}
+header{
+    position:sticky;
+    top:0;
+    background:#0d0d0d;
+    padding:15px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+header h1{
+    margin:0;
+    font-size:28px;
+    color:#eee;
+}
+nav button{
+    margin-left:10px;
+    padding:8px 14px;
+    border:none;
+    border-radius:8px;
+    background:#000;
+    color:#fff;
+    cursor:pointer;
+}
+nav button:hover{
+    background:#222;
+}
+#intro{
+    padding:50px 25px;
+    text-align:center;
+}
+.section{
+    padding:25px;
+}
+textarea{
+    width:100%;
+    height:150px;
+    border-radius:10px;
+    padding:10px;
+    background:#111;
+    color:#eee;
+    border:1px solid #222;
+}
+button{
+    transition:.3s;
+    background:#000;
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    padding:10px 20px;
+    cursor:pointer;
+}
+button:hover{
+    background:#222;
+}
+.message{
+    background:#111;
+    padding:12px;
+    margin:10px 0;
+    border-radius:10px;
+    border-left:3px solid #3d0060;
+}
+#notesMsg{
+    margin-bottom:10px;
+    font-style:italic;
+    color:#888;
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1><b>Eng.Adam Hosni</b></h1>
+    <nav>
+        <button onclick="showMySpace()">My Space</button>
+        <button onclick="showNotes()">Notes</button>
+        <button onclick="showMessages()">Messages</button>
+        <button onclick="window.location.href='special.html'">Special</button>
+    </nav>
+</header>
+
+<!-- Intro Section -->
+<div id="intro">
+    <h2>Hello, I'm Eng.Adam Hosni 🖤</h2>
+    <p>High school programmer, lost in code and thoughts.</p>
+    <p>Sometimes life feels gray, sometimes just black…</p>
+    <p><i>"And in the silence of the night, My heart whispers poems no one hears."</i></p>
+    <p>Welcome to my little dark world.</p>
+</div>
+
+<!-- Main Content -->
+<div id="mainContent">
+
+    <!-- MY SPACE EXTRAS -->
+    <div id="mySpaceExtras" class="section" style="display:none;">
+        <h2>My Space 🖤</h2>
+        <p>Programming: Python, HTML, CSS</p>
+        <p>Certificates: 3 from Ministry of Communications & IT + Udacity</p>
+        <p>Initiative: Digital Egypt Cubs</p>
+
+        <h3>Karate 🥋</h3>
+        <p>Achievements: Baguor Champion 5x, Menoufia Champion 3x</p>
+        <p>Black Belt: Dan 1</p>
+    </div>
+
+    <!-- NOTES -->
+    <div id="notes" class="section" style="display:none;">
+        <h2>Private Thoughts 🖤</h2>
+        <p id="notesMsg">Locked. Enter password to edit.</p>
+        <textarea id="noteText" disabled></textarea><br><br>
+        <button id="unlockBtn" onclick="unlockNotes()">Unlock</button>
+        <button onclick="saveNotes()">Save</button>
+    </div>
+
+    <!-- MESSAGES -->
+    <div id="messages" class="section" style="display:none;">
+        <h2>Leave a Message</h2>
+        <textarea id="msgInput" placeholder="Write something..."></textarea>
+        <button onclick="sendMessage()">Send</button>
+        <hr>
+        <button onclick="viewMessages()">Adam Only</button>
+        <div id="allMessages"></div>
+    </div>
+
+</div>
+
+<script>
+// --- Show Sections ---
+function showMySpace(){
+    document.getElementById('mySpaceExtras').style.display="block";
+    document.getElementById('notes').style.display="none";
+    document.getElementById('messages').style.display="none";
+}
+function showNotes(){
+    document.getElementById('notes').style.display="block";
+    document.getElementById('mySpaceExtras').style.display="none";
+    document.getElementById('messages').style.display="none";
+}
+function showMessages(){
+    document.getElementById('messages').style.display="block";
+    document.getElementById('notes').style.display="none";
+    document.getElementById('mySpaceExtras').style.display="none";
+}
+
+// --- Notes Password: 5639 ---
+function unlockNotes(){
+    let pass = prompt("Enter Notes Password");
+    if(pass === "5639"){
+        let noteText = document.getElementById("noteText");
+        noteText.disabled = false;
+        noteText.value = localStorage.getItem("notes") || "";
+        document.getElementById("unlockBtn").style.display = "none";
+        document.getElementById("notesMsg").style.display = "none";
+    } else {
+        alert("Wrong password");
+    }
+}
+function saveNotes(){
+    let noteText = document.getElementById("noteText");
+    localStorage.setItem("notes", noteText.value);
+    alert("Saved!");
+}
+
+// --- Messages ---
+function sendMessage(){
+    let msgInput = document.getElementById("msgInput");
+    let allMessages = document.getElementById("allMessages");
+    let msgs = JSON.parse(localStorage.getItem("msgs")||"[]");
+    msgs.push(msgInput.value);
+    localStorage.setItem("msgs", JSON.stringify(msgs));
+    msgInput.value="";
+    alert("Message sent to Adam ❤️");
+}
+function viewMessages(){
+    let pass = prompt("Enter Adam Password");
+    if(pass==="5639"){
+        let allMessages = document.getElementById("allMessages");
+        let msgs = JSON.parse(localStorage.getItem("msgs")||"[]");
+        allMessages.innerHTML="";
+        msgs.forEach(m=>{
+            allMessages.innerHTML += `<div class="message">${m}</div>`;
+        });
+    } else alert("Wrong password");
+}
+
+// --- Show Notes from Beginning ---
+document.getElementById("noteText").value = localStorage.getItem("notes") || "";
+document.getElementById("noteText").disabled = true;
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
